@@ -1,0 +1,32 @@
+body {
+		background: #000;
+		color: #FFF;
+	}
+	
+	div { 
+		text-align: center;
+	}
+	
+	h1 {
+		text-align: center;
+	}
+	
+	#olurisdiv, #syldricdiv, #caphrieldiv, #lysodiv {
+		padding: 20px;
+	}
+	
+	.hidden { display: none;}
+	
+	.horizontal {
+		display:flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.vertical {
+		display:flex;
+		flex-direction: column;
+		justify-content: left;
+		align-items: left;
+	}
