@@ -11,3 +11,5 @@ The calendar is divided into two eras called Saros 1 and Saros 2. Each saros has
 In Saros 2, there is a leap day called the Biennial, which happens at the beginning of every second year.
 
 The world is divided into two planetoids, called Salix (north) and Senna (south). The orientation of the moons changes depending on which planetoid you are viewing them from, which can be toggled in the top menu.
+
+The code I used to draw the moon phases comes from https://codepen.io/anowodzinski/pen/ZWKXPQ.
