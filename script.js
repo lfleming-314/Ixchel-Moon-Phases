@@ -522,27 +522,27 @@
 	
 	function getEclipseString(OS, OC, OL, SC, SL, CL, OSC, OSL, OCL, SCL, OSCL) {
 		if (OS) {
-			return "Oluris-Syldric";
+			return "<span class='purple'>Oluris</span>-<span class='green'>Syldric</span>";
 		} else if (OC) {
-			return "Oluris-Caphriel";
+			return "<span class='purple'>Oluris</span>-<span class='gray'>Caphriel</span>";
 		} else if (OL) {
-			return "Oluris-Lyso";
+			return "<span class='purple'>Oluris</span>-<span class='red'>Lyso</span>";
 		} else if (SC) {
-			return "Syldric-Caphriel";
+			return "<span class='green'>Syldric</span>-<span class='gray'>Caphriel</span>";
 		} else if (SL) {
-			return "Syldric-Lyso";
+			return "<span class='green'>Syldric</span>-<span class='red'>Lyso</span>";
 		} else if (CL) {
-			return "Caphriel-Lyso";
+			return "<span class='gray'>Caphriel</span>-<span class='red'>Lyso</span>";
 		} else if (OSC) {
-			return "Oluris-Syldric-Caphriel";
+			return "<span class='purple'>Oluris</span>-<span class='green'>Syldric</span>-<span class='gray'>Caphriel</span>";
 		} else if (OSL) {
-			return "Oluris-Syldric-Lyso";
+			return "<span class='purple'>Oluris</span>-<span class='green'>Syldric</span>-<span class='red'>Lyso</span>";
 		} else if (OCL) {
-			return "Oluris-Caphriel-Lyso";
+			return "<span class='purple'>Oluris</span>-<span class='gray'>Caphriel</span>-<span class='red'>Lyso</span>";
 		} else if (SCL) {
-			return "Syldric-Caphriel-Lyso";
+			return "<span class='green'>Syldric</span>-<span class='gray'>Caphriel</span>-<span class='red'>Lyso</span>";
 		} else if (OSCL) {
-			return "Oluris-Syldric-Caphriel-Lyso";
+			return "<span class='purple'>Oluris</span>-<span class='green'>Syldric</span>-<span class='gray'>Caphriel</span>-<span class='red'>Lyso</span>";
 		} else {
 			return "";
 		}
@@ -617,8 +617,6 @@
 			repaint(spainter, syldricPos);
 			repaint(cpainter, caphrielPos);
 			repaint(lpainter, lysoPos);
-			
-			$('#errors').append("<p>" + t + "</p>");
 		}
 		
 	}	
