@@ -13,13 +13,7 @@ h1 {
 	font-size: 7vw;
 }
 
-#planetoid {
-	width: 40vw;
-	text-align: center;
-	margin: auto;
-}
-
-#nav, #formdiv {
+#nav, #selectorbar {
 	display: grid;
 	grid-template-columns: 1fr;
 }
@@ -32,24 +26,12 @@ button, select, input {
 	font-size: 3vw;
 }
 
-.moondiv {
-	padding-left: 3vw;
-	padding-right: 3vw;
-	width: 40vw;
-}
-
 canvas {
 	width: 40vw;
 	height: 40vw;
 }
 
-.hidden { display: none;}
-
 .horizontal {
-	/*display:flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;*/
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
@@ -58,23 +40,7 @@ canvas {
 	display:flex;
 	flex-direction: column;
 	justify-content: left;
-	align-items: left;
-}
-
-.purple {
-	color: BlueViolet;
-}
-
-.green {
-	color: green;
-}
-
-.gray {
-	color: LightGray;
-}
-
-.red {
-	color: red;
+	align-items: center;
 }
 
 @media screen and (width >= 600px) {
@@ -113,11 +79,7 @@ canvas {
 	font-size: 2.5vw;
 	}
 	
-	#planetoid {
-		width: 20vw;
-	}
-	
-	#nav, #formdiv {
+	#nav, #selectorbar {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	
@@ -128,15 +90,10 @@ canvas {
 		font-size: 1.5vw;
 	}
 	
-	#formdiv {
+	#selectorbar {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-	
-	#planetoid, #year {
-		width: 15vw;
-		margin: auto;
 	}
 	
 	button, select, input {
