@@ -6,7 +6,7 @@
   "homepage": "https://lfleming-314.github.io/Ixchel-Moon-Phases/",
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
