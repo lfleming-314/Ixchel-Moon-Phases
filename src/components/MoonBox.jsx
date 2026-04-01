@@ -20,10 +20,10 @@ class MoonBox extends React.Component {
     componentDidMount() {
         const canvas = document.getElementById(this.props.moon.name + 'canvas');
         this.moonPainter = new MoonPainter(canvas, this.props.moon.color);
-        this.moonPainter.paint(getPhase(this.props.position, this.props.view));
+        this.moonPainter.paint(getPhase(this.props.position), this.props.view);
     }
     componentDidUpdate() {
-        this.moonPainter.paint(getPhase(this.props.position, this.props.view));
+        this.moonPainter.paint(getPhase(this.props.position), this.props.view);
         console.log('MoonBox updated: ' + this.props.moon.name + ' pos=' + this.props.position);
     }
 }

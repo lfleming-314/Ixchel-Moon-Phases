@@ -5,7 +5,6 @@ function MonthDaySelector(props) {
     let monthOptions = [...months];
     let biennialYear = isBiennialYear(props.t);
     return (<div id='monthday'>
-        &nbsp;&nbsp;
         <label htmlFor='month'>Month: </label>
         <select id='month' onChange={props.onUpdate} value={props.month}>
             {biennialYear && <option value={0}>Biennial</option>}
@@ -24,7 +23,6 @@ function MonthDaySelector(props) {
                 </option>
             ))}
         </select>
-        &nbsp;&nbsp;
     </div>)
 }
 

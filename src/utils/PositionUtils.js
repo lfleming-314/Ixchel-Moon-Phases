@@ -20,7 +20,7 @@ function getPosition(t, moon) {
     if (pos < 0) {
         pos += 360;
     }
-    console.log(moon.name + ' position: ' + pos);
+
     return pos;
 }
 

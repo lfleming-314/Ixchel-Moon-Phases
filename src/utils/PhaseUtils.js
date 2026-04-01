@@ -1,9 +1,5 @@
-function getPhase(pos, view) {
-    if (view === 'Salix N' || view === 'Senna N') {
-        return pos / 360;
-    } else if (view === 'Salix S' || view === 'Senna S') {
-        return 1 - (pos / 360);
-    }
+function getPhase(pos) {
+    return pos / 360;
 }
 
 function getPhaseName(pos, moon) {

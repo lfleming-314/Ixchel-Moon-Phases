@@ -40,7 +40,7 @@ function calcTFromDate(year, month, day, saros) {
         newT += (month-1) * constants.daysPerMonth;
         newT += day - 1;
     }
-    console.log(newT);
+    console.log("t:", newT);
     return newT;
 }
 
@@ -80,7 +80,7 @@ function getDateFromT(t) {
             month = (t2rem - (t2rem % constants.daysPerMonth)) / constants.daysPerMonth + 1;
         }
     }
-    console.log("t:", t, "year:", year, "month:", month, "day:", day);
+    
     return {year, month, day, saros};
 }
 

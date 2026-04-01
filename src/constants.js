@@ -8,7 +8,7 @@ const monthsPerYear = months.length;
 const daysPerYear = daysPerMonth * monthsPerYear;
 const daysPerBiennial = daysPerYear * 2 + 1;
 const initialT = 1201200;
-const initialView = 'Salix N';
+const initialView = "right";
 
 const degPerYear = 240 / 825;
 const degPerDayPreRift = degPerYear / daysPerYear;
