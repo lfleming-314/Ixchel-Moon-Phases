@@ -1,3 +1,5 @@
+import { rotationFromView } from './ViewUtils';
+
 // MoonPainter code modified from https://codepen.io/anowodzinski/pen/ZWKXPQ
 class MoonPainter {
     constructor( canvas, color ) {
@@ -68,34 +70,14 @@ class MoonPainter {
 
         paintedPhase *= -4;
 
-        let start, end;
-		let scaleX, scaleY;
-		switch (view) {
-			case 'right':
-				start = -Math.PI/2;
-				end = Math.PI/2;
-				scaleX = paintedPhase;
-				scaleY = 1;
-				break;
-			case 'left':
-				start = Math.PI/2;
-				end = -Math.PI/2;
-				scaleX = paintedPhase;
-				scaleY = 1;
-				break;
-			case 'up':
-				start = Math.PI;
-				end = 2*Math.PI;
-				scaleX = 1;
-				scaleY = paintedPhase;
-				break;
-			default:
-				start = 2*Math.PI;
-				end = Math.PI;
-				scaleX = 1;
-				scaleY = paintedPhase;
-		}
-
+        let rotation = rotationFromView(view);
+        let scaleX = paintedPhase;
+        let scaleY = 1;
+        let start = Math.PI/2;
+        let end = -Math.PI/2;
+        this.ctx1.translate(this.radius, this.radius);
+        this.ctx1.rotate(rotation);
+        this.ctx1.translate(-this.radius, -this.radius);
         this.ctx1.beginPath();
 		this.ctx1.arc(this.radius, this.radius, this.phaseRadius, start, end, true);
         this.ctx1.fillStyle='white';
@@ -106,15 +88,17 @@ class MoonPainter {
 		this.ctx1.translate(-this.radius, -this.radius);
         this.ctx1.beginPath();
         this.ctx1.arc(this.radius, this.radius, this.phaseRadius, start, end, true);
+        
         if (paintedPhase > 0) {
 			this.ctx1.globalCompositeOperation = 'destination-out';
 		} else {
             this.ctx1.globalCompositeOperation = 'source-over';
         }
         this.ctx1.closePath();
+        
 		this.ctx1.fillStyle = 'white';
 		this.ctx1.fill();
-
+        
         this.ctx1.translate(this.radius, this.radius);
 		this.ctx1.scale(2/scaleX, 2/scaleY);
 		this.ctx1.translate(-this.radius, -this.radius);
