@@ -106,7 +106,7 @@ class MoonPainter {
     
     /**
      * @param {Number} The phase expressed as a float in [0,1] range .
-     * @param {String} The view, one of 'right', 'left', 'up', 'down'.
+     * @param {String} The view expressed as a string (e.g. 'senna-north-polar').
      */	
     paint( phase, view ) {
         this.ctx.save();
