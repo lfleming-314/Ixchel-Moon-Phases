@@ -58,7 +58,7 @@ function isMultiEclipseFromT(numOccs, t) {
 }
 
 function isSolarEclipse(oPos, sPos, cPos, lPos, node1Pos, node2Pos) {
-    return (oPos == 0 || sPos == 0 || cPos == 0 || lPos == 0);
+    return (node1Pos == 0 || node2Pos == 0) && (oPos == 0 || sPos == 0 || cPos == 0 || lPos == 0);
 }
 
 function isSolarEclipseFromT(t) {

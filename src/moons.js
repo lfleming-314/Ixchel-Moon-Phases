@@ -7,11 +7,10 @@ class moon {
         this.color = color;
         this.orbitalTilt = orbitalTilt;
         this.angVel = 360 / this.synodic;
-        this.totVelPreRift = this.angVel + constants.degPerDayPreRift;
-        this.totVelPostRift = this.angVel + constants.degPerDayPostRift;
-        this.riftPos = ((constants.saros2start - 1) * this.totVelPreRift) % 360;
-        [this.siderealPreRift, this.siderealPostRift] = calcSiderealMonth(this.synodic);
-        [this.draconicPreRift, this.draconicPostRift] = calcDraconicMonth(this.synodic);
+        this.totVel = this.angVel + constants.degPerDay;
+        this.sidereal = calcSiderealMonth(this.synodic);
+        this.draconic = calcDraconicMonth(this.synodic);
+        [this.tropicalPreRift, this.tropicalPostRift] = calcTropicalMonth(this.synodic);
     }
 }
 
@@ -21,15 +20,17 @@ let caphriel = new moon('Caphriel', -100, 'White', -10);
 let lyso = new moon('Lyso', 156, 'Red', 5);
 
 function calcSiderealMonth(synodicMonth) {
-    let siderealPreRift = 1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPreRift));
-    let siderealPostRift = 1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPostRift));
-    return [siderealPreRift, siderealPostRift];
+    return 1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPreRift));
 }
 
 function calcDraconicMonth(synodicMonth) {
-    let draconicPreRift = 1 / ((1 / synodicMonth) + (1 / constants.nodalPrecessionPeriodPreRift));
-    let draconicPostRift = 1 / ((1 / synodicMonth) + (1 / constants.nodalPrecessionPeriodPostRift));
-    return [draconicPreRift, draconicPostRift];
+    return 1 / ((1 / synodicMonth) + (1 / constants.nodalPrecessionPeriod));
+}
+
+function calcTropicalMonth(synodicMonth) {
+    let tropicalPreRift = 1 / ((1/synodicMonth) + (1 / constants.tropicalYearPreRift));
+    let tropicalPostRift = 1 / ((1/synodicMonth) + (1 / constants.tropicalYearPostRift));
+    return [tropicalPreRift, tropicalPostRift];
 }
 
 export {oluris, syldric, caphriel, lyso};

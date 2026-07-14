@@ -24,7 +24,6 @@ function calculateT() {
         }
     }
     
-    console.log("year:", year, "month:", month, "day:", day, "saros:", saros);
     return calcTFromDate(year, month, day, saros);
 }
 
@@ -55,7 +54,6 @@ function isBiennial(t) {
 }
 
 function isBiennialYear(t) {
-    console.log(constants.daysPerBiennial);
     if (t < constants.saros2start) {return false;}
     return ((t - constants.saros2start) % constants.daysPerBiennial) <= constants.daysPerYearPostRift ? true : false;
 }
