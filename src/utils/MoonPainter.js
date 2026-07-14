@@ -72,6 +72,11 @@ class MoonPainter {
 
         let rotation = rotationFromView(view);
         let scaleX = paintedPhase;
+        // Guard against zero scale which can cause Infinity on inverse scaling
+        // (Firefox can fail to render or throw when scaled by 0).
+        if (Math.abs(scaleX) < 1e-6) {
+            scaleX = 1e-6;
+        }
         let scaleY = 1;
         let start = Math.PI/2;
         let end = -Math.PI/2;
@@ -100,8 +105,9 @@ class MoonPainter {
 		this.ctx1.fill();
         
         this.ctx1.translate(this.radius, this.radius);
-		this.ctx1.scale(2/scaleX, 2/scaleY);
-		this.ctx1.translate(-this.radius, -this.radius);
+        const invScaleX = 2 / scaleX;
+        this.ctx1.scale(invScaleX, 2 / scaleY);
+        this.ctx1.translate(-this.radius, -this.radius);
     }
     
     /**

@@ -1,6 +1,8 @@
 import React from 'react';
 import MoonPainter from '../utils/MoonPainter';
 import { getPhase, getPhaseName } from '../utils/PhaseUtils';
+import VisibilityTimes from './VisibilityTimes';
+import { getVisibilityTimes, getDeclination } from '../utils/VisibilityUtils';
 
 class MoonBox extends React.Component {
     constructor(props) {
@@ -13,7 +15,11 @@ class MoonBox extends React.Component {
             <div id={this.props.moon.name + 'box'} className='moonbox vertical'>
                 <h1 style={{ 'color': this.props.moon.color }}>{this.props.moon.name}</h1>
                 <canvas id={this.props.moon.name + 'canvas'} width='400' height='400'></canvas>
-                <h1>{getPhaseName(this.props.position, this.props.moon)}</h1>
+                <h1 style={{ 'color': this.props.moon.color }}>{getPhaseName(this.props.position, this.props.moon)}</h1>
+                <VisibilityTimes moon={this.props.moon} 
+                visibilityTimes={getVisibilityTimes(this.props.t, this.props.position, this.props.view)} 
+                declination={getDeclination(this.props.t, this.props.position, this.props.node1Pos, this.props.moon.orbitalTilt)} 
+                />
             </div>
         );
     }

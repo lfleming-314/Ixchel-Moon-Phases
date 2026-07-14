@@ -51,6 +51,11 @@ canvas {
 	align-items: center;
 }
 
+.small-gap {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
 @media screen and (width >= 600px) {
 	
 	body {

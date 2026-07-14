@@ -9,6 +9,10 @@ function calculateT() {
     if (isNaN(year)) {
         year = 0;
     }
+    if (month == 0 && !isBiennialYearFromDate(year, saros)) {
+        month = 1;
+        document.getElementById('month').value = 1;
+    }
     if (year < 0) {
         if (saros == '2') {
             saros = '1';
@@ -20,6 +24,7 @@ function calculateT() {
         }
     }
     
+    console.log("year:", year, "month:", month, "day:", day, "saros:", saros);
     return calcTFromDate(year, month, day, saros);
 }
 
@@ -50,8 +55,14 @@ function isBiennial(t) {
 }
 
 function isBiennialYear(t) {
+    console.log(constants.daysPerBiennial);
     if (t < constants.saros2start) {return false;}
-    return ((t - constants.saros2start) % constants.daysPerBiennial) <= constants.daysPerYear ? true : false;
+    return ((t - constants.saros2start) % constants.daysPerBiennial) <= constants.daysPerYearPostRift ? true : false;
+}
+
+function isBiennialYearFromDate(year, saros) {
+    if (saros == '1') {return false;}
+    return year % 2 === 0 ? true : false;
 }
 
 function getDateFromT(t) {
@@ -59,16 +70,16 @@ function getDateFromT(t) {
     saros = t >= constants.saros2start ? '2' : '1';
     if (t < constants.saros2start) {
         let tempT = t - constants.saros1start;
-        let tRem = tempT % constants.daysPerYear;
-        year = (tempT - tRem) / constants.daysPerYear;
+        let tRem = tempT % constants.daysPerYearPreRift;
+        year = (tempT - tRem) / constants.daysPerYearPreRift;
         day = (tRem % constants.daysPerMonth) + 1;
         month = (tRem - (tRem % constants.daysPerMonth)) / constants.daysPerMonth + 1;
     } else {
         let tempT = t - constants.saros2start;
         let t2rem = tempT % constants.daysPerBiennial;
         year = (tempT - t2rem) / constants.daysPerBiennial * 2;
-        if (t2rem > constants.daysPerYear) {
-            t2rem -= constants.daysPerYear;
+        if (t2rem > constants.daysPerYearPostRift) {
+            t2rem -= (constants.daysPerYearPostRift - .5);
             year += 1;
         }
         t2rem -= 1;

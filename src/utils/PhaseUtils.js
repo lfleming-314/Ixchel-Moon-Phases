@@ -4,7 +4,7 @@ function getPhase(pos) {
 
 function getPhaseName(pos, moon) {
     let phase = pos;
-    if (moon.orbit < 0) {
+    if (moon.synodic < 0) {
         phase = 360 - pos;
     }
     if (phase > 355 || phase < 5) { return "New Moon"; }

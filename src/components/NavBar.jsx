@@ -1,4 +1,4 @@
-import { prevDay, nextDay, prevMonth, nextMonth, prevYear, nextYear, prevEclipse, nextEclipse, prev3eclipse, next3eclipse } from '../utils/NavigationUtils';
+import { prevDay, nextDay, prevMonth, nextMonth, prevYear, nextYear, prevEclipse, nextEclipse, prev3eclipse, next3eclipse, prev4eclipse, next4eclipse, prevSolar, nextSolar } from '../utils/NavigationUtils';
 import NavButton from './NavButton';
 function NavBar(props) {
     return (<nav id='nav'>
@@ -9,6 +9,8 @@ function NavBar(props) {
 				<NavButton t={props.t} setTValue={props.setTValue} id='prevday' handler={prevDay} text='&lt;&lt; Day'/>
 			</div>
 			<div className='buttonRow'>
+				<NavButton t={props.t} setTValue={props.setTValue} id='prevSolar' handler={prevSolar} text='&lt;&lt; Solar Eclipse'/>
+				<NavButton t={props.t} setTValue={props.setTValue} id='prev4eclipse' handler={prev4eclipse} text='&lt;&lt; Quad-Eclipse'/>
 				<NavButton t={props.t} setTValue={props.setTValue} id='prev3eclipse' handler={prev3eclipse} text='&lt;&lt; Multi-Eclipse'/>
 				<NavButton t={props.t} setTValue={props.setTValue} id='preveclipse' handler={prevEclipse} text='&lt;&lt; Eclipse'/>
 			</div>
@@ -22,6 +24,8 @@ function NavBar(props) {
 			<div className='buttonRow'>
 				<NavButton t={props.t} setTValue={props.setTValue} id='nexteclipse' handler={nextEclipse} text='Eclipse &gt;&gt;'/>
 				<NavButton t={props.t} setTValue={props.setTValue} id='next3eclipse' handler={next3eclipse} text='Multi-Eclipse &gt;&gt;'/>
+				<NavButton t={props.t} setTValue={props.setTValue} id='next4eclipse' handler={next4eclipse} text='Quad-Eclipse &gt;&gt;'/>
+				<NavButton t={props.t} setTValue={props.setTValue} id='nextSolar' handler={nextSolar} text='Solar Eclipse &gt;&gt;'/>
 			</div>
 		</div>
     </nav>)

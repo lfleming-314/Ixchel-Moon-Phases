@@ -1,5 +1,5 @@
 import { getDateFromT, calcTFromDate, isBiennialYear } from "./t.js";
-import { isEclipseFromT, isMultiEclipseFromT } from "./EclipseUtils.js";
+import { isEclipseFromT, isMultiEclipseFromT, isSolarEclipseFromT } from "./EclipseUtils.js";
 import * as constants from '../constants.js';
 
 function prevDay(t) {
@@ -67,7 +67,7 @@ function prev3eclipse(t) {
     let found = false;
     while (!found && t > constants.saros1start) {
         t--;
-        found = isMultiEclipseFromT(t);
+        found = isMultiEclipseFromT(3,t);
     }
     return t;
 }
@@ -76,9 +76,45 @@ function next3eclipse(t) {
     let found = false;
     while (!found && t < constants.saros2start *2) {
         t++;
-        found = isMultiEclipseFromT(t);
+        found = isMultiEclipseFromT(3,t);
     }
     return t;
 }
 
-export { prevDay, nextDay, prevMonth, nextMonth, prevYear, nextYear, prevEclipse, nextEclipse, prev3eclipse, next3eclipse };
+function prev4eclipse(t) {
+    let found = false;
+    while (!found && t > constants.saros1start) {
+        t--;
+        found = isMultiEclipseFromT(4,t);
+    }
+    return t;
+}
+
+function next4eclipse(t) {
+    let found = false;
+    while (!found && t < constants.saros2start *2) {
+        t++;
+        found = isMultiEclipseFromT(4,t);
+    }
+    return t;
+}
+
+function prevSolar(t) {
+    let found = false;
+    while (!found && t > constants.saros1start) {
+        t--;
+        found = isSolarEclipseFromT(t);
+    }
+    return t;
+}
+
+function nextSolar(t) {
+    let found = false;
+    while (!found && t < constants.saros2start *2) {
+        t++;
+        found = isSolarEclipseFromT(t);
+    }
+    return t;
+}
+
+export { prevDay, nextDay, prevMonth, nextMonth, prevYear, nextYear, prevEclipse, nextEclipse, prev3eclipse, next3eclipse, prev4eclipse, next4eclipse, prevSolar, nextSolar };
