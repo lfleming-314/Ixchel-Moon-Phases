@@ -40,21 +40,21 @@ function isEclipseFromT(t) {
     return isEclipse(oPos, sPos, cPos, lPos, node1Pos, node2Pos);
 }
 
-function isMultiEclipse(numOccs, oPos, sPos, cPos, lPos, node1Pos, node2Pos) {
+function isMultiEclipse(numOccs, allowSolar, oPos, sPos, cPos, lPos, node1Pos, node2Pos) {
     let {oEclipse, sEclipse, cEclipse, lEclipse, solarEclipse} = getEclipses(oPos, sPos, cPos, lPos, node1Pos, node2Pos);
     let count = 0;
     if (oEclipse) { count++; }
     if (sEclipse) { count++; }
     if (cEclipse) { count++; }
     if (lEclipse) { count++; }
-    if (solarEclipse) { count++; }
+    if (allowSolar && solarEclipse) { count++; }
     return count >= numOccs;
 }
 
-function isMultiEclipseFromT(numOccs, t) {
+function isMultiEclipseFromT(numOccs, allowSolar, t) {
     let {oPos, sPos, cPos, lPos} = getAllPositions(t);
     let {node1Pos, node2Pos} = getNodePositions(t);
-    return isMultiEclipse(numOccs, oPos, sPos, cPos, lPos, node1Pos, node2Pos);
+    return isMultiEclipse(numOccs, allowSolar, oPos, sPos, cPos, lPos, node1Pos, node2Pos);
 }
 
 function isSolarEclipse(oPos, sPos, cPos, lPos, node1Pos, node2Pos) {

@@ -12,4 +12,4 @@ In Saros 2, there is a leap day called the Biennial, which happens at the beginn
 
 The world is divided into two planetoids, called Salix and Senna. The orientation of the moons changes depending on which hemisphere you are viewing them from, which can be toggled in the top menu.
 
-The code I used to draw the moon phases comes from https://codepen.io/anowodzinski/pen/ZWKXPQ.
+The code I used to draw the moon phases is adapted from https://codepen.io/anowodzinski/pen/ZWKXPQ.

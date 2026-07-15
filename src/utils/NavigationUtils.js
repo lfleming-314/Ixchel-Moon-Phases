@@ -67,7 +67,7 @@ function prev3eclipse(t) {
     let found = false;
     while (!found && t > constants.saros1start) {
         t--;
-        found = isMultiEclipseFromT(3,t);
+        found = isMultiEclipseFromT(3,true,t);
     }
     return t;
 }
@@ -76,7 +76,7 @@ function next3eclipse(t) {
     let found = false;
     while (!found && t < constants.saros2start *2) {
         t++;
-        found = isMultiEclipseFromT(3,t);
+        found = isMultiEclipseFromT(3,true,t);
     }
     return t;
 }
@@ -85,7 +85,7 @@ function prev4eclipse(t) {
     let found = false;
     while (!found && t > constants.saros1start) {
         t--;
-        found = isMultiEclipseFromT(4,t);
+        found = isMultiEclipseFromT(4,false,t);
     }
     return t;
 }
@@ -94,7 +94,7 @@ function next4eclipse(t) {
     let found = false;
     while (!found && t < constants.saros2start *2) {
         t++;
-        found = isMultiEclipseFromT(4,t);
+        found = isMultiEclipseFromT(4,false,t);
     }
     return t;
 }

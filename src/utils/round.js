@@ -1,3 +1,4 @@
+//rounds @value to @decimals digits and assures result is between 0 and 360
 function roundTo(value, decimals) {
     let factor = Math.pow(10, decimals);
     value = Math.round(value * factor) / factor;
