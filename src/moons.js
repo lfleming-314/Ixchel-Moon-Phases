@@ -3,13 +3,13 @@ import * as constants from "./constants.js";
 class moon {
     constructor(name, synodic, color, orbitalTilt) {
         this.name = name;
-        this.synodic = synodic; //at the rift, the synodic period changes to match the new day length
+        this.synodic = synodic;
         this.color = color;
         this.orbitalTilt = orbitalTilt;
         this.angVel = 360 / this.synodic;
         this.totVel = this.angVel + constants.degPerDay;
-        this.sidereal = calcSiderealMonth(this.synodic);
-        this.draconic = calcDraconicMonth(this.synodic);
+        [this.siderealPreRift, this.siderealPostRift] = calcSiderealMonth(this.synodic);
+        [this.draconicPreRift, this.draconicPostRift] = calcDraconicMonth(this.synodic);
         [this.tropicalPreRift, this.tropicalPostRift] = calcTropicalMonth(this.synodic);
     }
 }
@@ -20,11 +20,15 @@ let caphriel = new moon('Caphriel', -100, 'White', -10);
 let lyso = new moon('Lyso', 156, 'Red', 5);
 
 function calcSiderealMonth(synodicMonth) {
-    return 1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPreRift));
+    let preRift =  1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPreRift));
+    let postRift =  1 / ((1 / synodicMonth) + (1 / constants.daysPerYearPostRift));
+    return [preRift, postRift];
 }
 
 function calcDraconicMonth(synodicMonth) {
-    return 1 / ((1 / synodicMonth) + (1 / constants.nodalPrecessionPeriod));
+    let preRift = 1 / ((1 / synodicMonth) + (1 / constants.nodalPrecessionPeriodPreRift));
+    let postRift = 1 / ((1/synodicMonth) + (1 / constants.nodalPrecessionPeriodPostRift));
+    return [preRift, postRift];
 }
 
 function calcTropicalMonth(synodicMonth) {

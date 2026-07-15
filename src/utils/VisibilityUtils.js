@@ -11,12 +11,12 @@ function getVisibilityTimes(t, position, view, node1Position, orbitalTilt) {
     }
 
     if (latitude + Math.abs(declination) < 90) {
-        console.log("latitude:", latitude, "declination", declination);
+        
         // Clamp the acos argument to [-1, 1] to prevent NaN when tangent products exceed bounds
         let acosArg = -Math.tan(Math.abs(latitude) * Math.PI / 180) * Math.tan(Math.abs(declination) * Math.PI / 180);
         acosArg = Math.max(-1, Math.min(1, acosArg));
         let hourAngle = Math.acos(acosArg) * 180 / Math.PI;
-        console.log("hourangle", hourAngle);
+        
         let peak = getTimeFromPosition(position * view.rotation);
         let rise = getTimeFromPosition((position * view.rotation - hourAngle) % 360);
         let set = getTimeFromPosition((position * view.rotation + hourAngle) % 360);
@@ -45,7 +45,7 @@ function getTimeFromPosition(position) {
 }
 
 function decimalToHourFormat(decimalTime) {
-    console.log(decimalTime);
+    
     let hours = Math.floor(decimalTime);
     let minutes = Math.floor((decimalTime - hours) * 60);
     let seconds = Math.floor(((decimalTime - hours) * 60 - minutes) * 60);
@@ -87,7 +87,15 @@ function getDeclination(t, position, node1Position, orbitalTilt) {
 }
 
 function getRange(t) { //where we are in the standstill cycle, normalized to -1 to 1 range
-    let standstillPosition = (t % constants.nodalPrecessionPeriod) / constants.nodalPrecessionPeriod * 360;
+    let standstillPosition;
+    if (t < constants.saros2start) {
+        standstillPosition = (t % constants.nodalPrecessionPeriodPreRift) / constants.nodalPrecessionPeriodPreRift * 360;
+    } else {
+        let riftStandstillPosition = (constants.saros2start % constants.nodalPrecessionPeriodPreRift) / constants.nodalPrecessionPeriodPreRift * 360;
+        let postRiftT = t - constants.saros2start;
+        let postStandstillProgression = (postRiftT % constants.nodalPrecessionPeriodPostRift) / constants.nodalPrecessionPeriodPostRift * 360;
+        standstillPosition = riftStandstillPosition + postStandstillProgression;
+    }
     
     if (standstillPosition > 180) {
         standstillPosition = 360 - standstillPosition;
